@@ -1,9 +1,9 @@
 "use server";
 
+import { MESSAGES, STATUS_CODES } from "@/utils/message";
 import { UserSorme } from "@/models/UserSorme";
 import { connectDB } from "@/utils/connectDB";
 import { hashPassword } from "@/utils/fun";
-import { MESSAGES, STATUS_CODES } from "@/utils/message";
 
 export const createUser = async (req) => {
   try {
