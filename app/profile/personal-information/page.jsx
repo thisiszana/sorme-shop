@@ -1,5 +1,7 @@
+import PersonalInformationPage from "@/components/profiles/profile-information/PersonalInformationPage";
+
 export default function PersonalInformation() {
-  return <div>PersonalInformation</div>;
+  return <PersonalInformationPage />;
 }
 
 export const metadata = {

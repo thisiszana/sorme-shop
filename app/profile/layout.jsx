@@ -1,11 +1,16 @@
-import { getUser } from "@/actions/user.action";
-import { User } from "@/components/icons/Icons";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import { redirect } from "next/navigation";
+import Image from "next/image";
+
+import { getServerSession } from "@/utils/session";
+
 import ProfileMobilebar from "@/components/profiles/shared/ProfileMobilebar";
 import ProfileSidebar from "@/components/profiles/shared/ProfileSidebar";
-import { getServerSession } from "@/utils/session";
-import { redirect } from "next/navigation";
+
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+
+import { getUser } from "@/actions/user.action";
+import { User } from "@/components/icons/Icons";
 
 export default async function ProfileLayout({ children }) {
   const session = getServerSession();
