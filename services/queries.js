@@ -12,3 +12,20 @@ export const getAllProducts = async () => {
     return null;
   }
 };
+
+export const getFilterProducts = async (searchParams) => {
+  const query = new URLSearchParams(searchParams);
+
+  try {
+    const res = await fetch(
+      `https://admin-dahboard-shop.vercel.app/api/products?${query}`
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch filtering products");
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching filtering products:", error);
+    return null;
+  }
+};
