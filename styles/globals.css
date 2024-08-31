@@ -41,3 +41,57 @@
 .Transition {
   @apply transition duration-200 ease-in-out;
 }
+
+.transition1 {
+  @apply transition duration-200 ease-in-out;
+}
+
+.maxWidth {
+  @apply max-w-[1400px] mx-auto;
+}
+
+.pagesPaddingX {
+  @apply px-[18px]; /* paddingX + paddingIcon */
+}
+
+.iconSize {
+  @apply text-[24px];
+}
+
+.paddingIcon {
+  @apply p-[6px];
+}
+
+.maxWidth2 {
+  @apply max-w-[1200px] mx-auto;
+}
+
+.subheader {
+  @apply font-semibold text-[18px];
+}
+
+.cardShadow {
+  @apply shadow-[0_5px_15px_#e2e8f0];
+}
+
+.cardShadow2 {
+  @apply shadow-[0_5px_3px_#e2e8f0];
+}
+
+.cardShadow3 {
+  @apply shadow-[0_10px_50px_-12px_rgba(0,0,0,0.1)];
+}
+
+@keyframes slowBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.slow-bounce {
+  animation: slowBounce 4s infinite;
+}

@@ -1,3 +1,168 @@
+import {
+  PiBasketThin,
+  PiCurrencyDollarSimpleThin,
+  PiLayoutLight,
+  PiPaperPlaneThin,
+  PiPlusSquareThin,
+  PiTextBLight,
+  PiTextboxLight,
+  PiUsersThin,
+  PiPowerThin,
+  PiTrashSimple,
+  PiNewspaperLight,
+  PiPencilSimpleLight,
+  PiUploadLight,
+  PiHeartLight,
+  PiClockLight,
+  PiLockSimpleOpenLight,
+  PiArrowBendRightUpLight,
+  PiArrowBendRightDownLight,
+  PiBoundingBoxLight,
+  PiQuestionLight,
+  PiUserLight,
+  PiCheckSquareLight,
+  PiShieldCheckLight,
+  PiHeadphonesLight,
+  PiArrowDownLight,
+  PiArrowRightLight,
+  PiTwitterLogoLight,
+  PiGoogleLogoLight,
+  PiInstagramLogoLight,
+  PiTelegramLogoLight,
+  PiYoutubeLogoLight,
+  PiEyeLight,
+  PiArrowLeftLight,
+  PiCreditCardLight,
+  PiPaypalLogoLight,
+  PiHandshakeLight,
+  PiTruckLight,
+} from "react-icons/pi";
+import { GoHome, GoTasklist } from "react-icons/go";
+import { IoIosNotificationsOutline, IoIosArrowDown } from "react-icons/io";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { GiShoppingCart } from "react-icons/gi";
+import { FiGrid, FiShoppingBag, FiSettings } from "react-icons/fi";
+import {
+  MdSupportAgent,
+  MdOutlineHealthAndSafety,
+  MdProductionQuantityLimits,
+  MdDeleteOutline,
+} from "react-icons/md";
+import {
+  CiDark,
+  CiDeliveryTruck,
+  CiFilter,
+  CiLocationOn,
+  CiMenuBurger,
+  CiSearch,
+  CiSettings,
+  CiTimer,
+} from "react-icons/ci";
+import { TfiClose } from "react-icons/tfi";
+import { FcLike } from "react-icons/fc";
+import { RiAdminLine } from "react-icons/ri";
+import { TbCategory2, TbShoppingBagPlus } from "react-icons/tb";
+import { AiOutlineProduct } from "react-icons/ai";
+
+export const icons = {
+  cart: <GiShoppingCart />,
+  user: <PiUserLight />,
+  home: <GoHome />,
+  admin: <RiAdminLine />,
+  power: <PiPowerThin />,
+  deliveryTruck: <PiTruckLight />,
+  paper: <PiPaperPlaneThin />,
+  heart: <PiHeartLight />,
+  close: <TfiClose />,
+  plus: <PiPlusSquareThin />,
+
+  eyePassHiden: <IoEyeOffOutline />,
+  eyePass: <IoEyeOutline />,
+  time: <CiTimer />,
+
+  dashboard: <FiGrid />,
+  bagadmin: <FiShoppingBag />,
+  setting: <FiSettings />,
+  downArrowAd: <IoIosArrowDown />,
+  dollar: <PiCurrencyDollarSimpleThin />,
+  basket: <PiBasketThin />,
+
+  users: <PiUsersThin />,
+
+  layout: <PiLayoutLight />,
+  textB: <PiTextBLight />,
+  textBox: <PiTextboxLight />,
+  tasks: <GoTasklist />,
+  notification: <IoIosNotificationsOutline />,
+  settings: <CiSettings />,
+  power: <PiPowerThin />,
+  search: <CiSearch />,
+
+  moon: <CiDark />,
+  trash: <PiTrashSimple />,
+  pen: <PiPencilSimpleLight />,
+  document: <PiNewspaperLight />,
+  upload: <PiUploadLight />,
+
+  clock: <PiClockLight />,
+  lock: <PiLockSimpleOpenLight />,
+  growArrow: <PiArrowBendRightUpLight />,
+  downArrow: <PiArrowDownLight />,
+  rightArrow: <PiArrowRightLight />,
+  leftArrow: <PiArrowLeftLight />,
+  fallingArrow: <PiArrowBendRightDownLight />,
+  category: <PiBoundingBoxLight />,
+  question: <PiQuestionLight />,
+  menu: <CiMenuBurger />,
+  safe: <MdOutlineHealthAndSafety />,
+  limit: <MdProductionQuantityLimits />,
+  headphone: <MdSupportAgent />,
+  filter: <CiFilter />,
+  eye: <PiEyeLight />,
+  location: <CiLocationOn />,
+  creditCard: <PiCreditCardLight />,
+  paypal: <PiPaypalLogoLight />,
+  handShake: <PiHandshakeLight />,
+  product: <AiOutlineProduct />,
+  addToCart: <TbShoppingBagPlus />,
+  delete: <MdDeleteOutline />,
+  //
+  twitter: <PiTwitterLogoLight />,
+  google: <PiGoogleLogoLight />,
+  instagram: <PiInstagramLogoLight />,
+  telegram: <PiTelegramLogoLight />,
+  youtube: <PiYoutubeLogoLight />,
+  redHeart: <FcLike />,
+};
+
+export const navLinks = [
+  {
+    title: "Home",
+    icon: icons.home,
+    link: "/",
+  },
+  {
+    title: "Products",
+    icon: icons.basket,
+    link: "/products",
+  },
+  {
+    title: "Categories",
+    icon: icons.category,
+    link: "/categories",
+  },
+  {
+    title: "Blogs",
+    icon: icons.textB,
+    link: "/blogs",
+  },
+  {
+    title: "About Us",
+    icon: icons.question,
+    link: "/about-us",
+  },
+];
+
 export const images = {
   logo: "/images/sorme-banner.png",
   signupimage: "/images/authSignup.jpg",
@@ -12,3 +177,68 @@ export const images = {
   airpods: "/images/airpods-pro.png",
   gamepad: "/images/gamepad.png",
 };
+
+export const footerLinks = [
+  {
+    isLink: true,
+    title: "About Us",
+    id: 1,
+    links: [
+      "Careers",
+      "Our Stores",
+      "Our Cares",
+      "Terms & Conditions",
+      "Privacy Policy",
+    ],
+  },
+  {
+    isLink: true,
+    title: "Customer Care",
+    id: 2,
+    links: [
+      "Help Center",
+      "Track Your Order",
+      "Corporate & Bulk Purchasing",
+      "Returns & Refunds",
+    ],
+  },
+  {
+    isLink: false,
+    title: "Contact Us",
+    id: 3,
+    names: [
+      "Help Center",
+      "Track Your Order",
+      "Corporate & Bulk Purchasing",
+      "Returns & Refunds",
+    ],
+  },
+];
+
+export const socialMedia = [
+  {
+    icon: icons.youtube,
+    link: "/",
+    id: 1,
+  },
+  {
+    icon: icons.twitter,
+    link: "/",
+    id: 2,
+  },
+  {
+    icon: icons.google,
+    link: "/",
+    id: 3,
+  },
+  {
+    icon: icons.instagram,
+    link: "/",
+    id: 4,
+  },
+  {
+    icon: icons.telegram,
+    link: "/",
+    id: 5,
+  },
+];
