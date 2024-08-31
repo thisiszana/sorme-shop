@@ -66,13 +66,10 @@ import { AiOutlineProduct } from "react-icons/ai";
 
 export const icons = {
   cart: <GiShoppingCart />,
-  user: <PiUserLight />,
-  home: <GoHome />,
-  admin: <RiAdminLine />,
+
+  
   power: <PiPowerThin />,
-  deliveryTruck: <PiTruckLight />,
-  paper: <PiPaperPlaneThin />,
-  heart: <PiHeartLight />,
+
   close: <TfiClose />,
   plus: <PiPlusSquareThin />,
 
@@ -85,12 +82,11 @@ export const icons = {
   setting: <FiSettings />,
   downArrowAd: <IoIosArrowDown />,
   dollar: <PiCurrencyDollarSimpleThin />,
-  basket: <PiBasketThin />,
 
   users: <PiUsersThin />,
 
   layout: <PiLayoutLight />,
-  textB: <PiTextBLight />,
+
   textBox: <PiTextboxLight />,
   tasks: <GoTasklist />,
   notification: <IoIosNotificationsOutline />,
@@ -111,8 +107,7 @@ export const icons = {
   rightArrow: <PiArrowRightLight />,
   leftArrow: <PiArrowLeftLight />,
   fallingArrow: <PiArrowBendRightDownLight />,
-  category: <PiBoundingBoxLight />,
-  question: <PiQuestionLight />,
+
   menu: <CiMenuBurger />,
   safe: <MdOutlineHealthAndSafety />,
   limit: <MdProductionQuantityLimits />,
@@ -133,6 +128,16 @@ export const icons = {
   telegram: <PiTelegramLogoLight />,
   youtube: <PiYoutubeLogoLight />,
   redHeart: <FcLike />,
+  user: <PiUserLight />,
+  deliveryTruck: <PiTruckLight />,
+  paper: <PiPaperPlaneThin />,
+  heart: <PiHeartLight />,
+  category: <PiBoundingBoxLight />,
+  question: <PiQuestionLight />,
+  textB: <PiTextBLight />,
+  basket: <PiBasketThin />,
+  home: <GoHome />,
+  admin: <RiAdminLine />,
 };
 
 export const navLinks = [
@@ -160,6 +165,29 @@ export const navLinks = [
     title: "About Us",
     icon: icons.question,
     link: "/about-us",
+  },
+];
+
+export const profilePages = [
+  {
+    name: "Personal Information",
+    route: "personal-information",
+    icon: icons.user,
+  },
+  {
+    name: "Orders",
+    route: "orders",
+    icon: icons.deliveryTruck,
+  },
+  {
+    name: "Comments",
+    route: "comments",
+    icon: icons.paper,
+  },
+  {
+    name: "Likes",
+    route: "likes",
+    icon: icons.heart,
   },
 ];
 
