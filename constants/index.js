@@ -67,7 +67,6 @@ import { AiOutlineProduct } from "react-icons/ai";
 export const icons = {
   cart: <GiShoppingCart />,
 
-  
   power: <PiPowerThin />,
 
   close: <TfiClose />,
@@ -268,5 +267,71 @@ export const socialMedia = [
     icon: icons.telegram,
     link: "/",
     id: 5,
+  },
+];
+
+export const categories = [
+  {
+    title: "Camera",
+    query: "camera",
+  },
+  {
+    title: "Gaming",
+    query: "gaming",
+  },
+  {
+    title: "Headphone",
+    query: "headphone",
+  },
+  {
+    title: "Laptop",
+    query: "laptop",
+  },
+  {
+    title: "Phone",
+    query: "phone",
+  },
+  {
+    title: "Printer",
+    query: "printer",
+  },
+  {
+    title: "Speaker",
+    query: "speaker",
+  },
+  {
+    title: "Tablet",
+    query: "tablet",
+  },
+  {
+    title: "TV",
+    query: "tv",
+  },
+  {
+    title: "Watch",
+    query: "watch",
+  },
+];
+
+export const sortProducts = [
+  {
+    sortName: "newest",
+    sortId: 1,
+  },
+  {
+    sortName: "oldest",
+    sortId: 2,
+  },
+  {
+    sortName: "most expensive",
+    sortId: 3,
+  },
+  {
+    sortName: "cheapest",
+    sortId: 4,
+  },
+  {
+    sortName: "bestselling",
+    sortId: 5,
   },
 ];
