@@ -1,9 +1,12 @@
 "use server";
 
-import { UserSorme } from "@/models/UserSorme";
-import { connectDB } from "@/utils/connectDB";
+import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/cookies";
 import { MESSAGES, STATUS_CODES } from "@/utils/message";
 import { getServerSession } from "@/utils/session";
+import { UserSorme } from "@/models/UserSorme";
+import { connectDB } from "@/utils/connectDB";
+import { sign } from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export const getUser = async () => {
   try {
@@ -104,7 +107,7 @@ export const uppdateUser = async (req) => {
       user,
       message: MESSAGES.updateProfile,
       status: MESSAGES.success,
-      status: STATUS_CODES.updated,
+      code: STATUS_CODES.updated,
     };
   } catch (error) {
     return {

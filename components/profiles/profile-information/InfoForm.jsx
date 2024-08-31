@@ -1,13 +1,20 @@
 "use client";
 
-import { Close } from "@/components/icons/Icons";
-import Loader from "@/components/shared/Loader";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+import { useRouter } from "next/navigation";
+
+import toast from "react-hot-toast";
+import moment from "moment";
+
+import { uppdateUser } from "@/actions/user.action";
+
+import CustomBtn from "@/components/shared/CustomBtn";
 import RadioList from "./RadioList";
 import Forms from "./Forms";
-import moment from "moment";
-import CustomBtn from "@/components/shared/CustomBtn";
+
+import { Close } from "@/components/icons/Icons";
+import { MESSAGES } from "@/utils/message";
 
 export default function InfoForm(props) {
   const { username, displayName, phoneNumber, address, gender, createdAt } =
@@ -25,7 +32,32 @@ export default function InfoForm(props) {
 
   const router = useRouter();
 
-  const submitForm = async (e) => {};
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (!form.username) {
+      toast.error(MESSAGES.usernameEmpty);
+      return;
+    }
+
+    setLoading(() => true);
+
+    try {
+      const res = await uppdateUser(form);
+
+      if (res.code !== 202) {
+        toast.error(MESSAGES.wentWrong);
+        setError(res.message);
+      } else {
+        toast.success(MESSAGES.updateProfile);
+        router.refresh();
+      }
+    } catch (error) {
+      toast.error(MESSAGES.errorOccurred);
+      setError(MESSAGES.errorUpdateProfile);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>

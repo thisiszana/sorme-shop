@@ -19,6 +19,9 @@ export const MESSAGES = {
   badRequest: "Bad Request!",
   unAuthorized: "You are not authorized!",
   user_exist: "Username already Exists!",
+  usernameEmpty: "Username cannot be empty!",
+  errorOccurred: "An error occurred!",
+  errorUpdateProfile: "An error occurred while updating the profile.",
   userNotFound: "Username or password is In-Correct!",
   noMatchPassword: "Current Password is in-correct!",
   confirmPass: "The password is not the same.",
@@ -30,6 +33,7 @@ export const MESSAGES = {
   updateRole: "User Role Updated!",
   deleteAdmin: "User Deleted!",
   adminHasContent: "Admin has content!",
+  wentWrong: "Something went wrong!",
   failed: "failed!",
   server: "Server Error!",
 };

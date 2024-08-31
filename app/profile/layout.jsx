@@ -6,11 +6,11 @@ import { getServerSession } from "@/utils/session";
 import ProfileMobilebar from "@/components/profiles/shared/ProfileMobilebar";
 import ProfileSidebar from "@/components/profiles/shared/ProfileSidebar";
 
-import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
 import { getUser } from "@/actions/user.action";
 import { User } from "@/components/icons/Icons";
+import { images } from "@/constants";
 
 export default async function ProfileLayout({ children }) {
   const session = getServerSession();
@@ -60,7 +60,6 @@ export default async function ProfileLayout({ children }) {
         </div>
         <ProfileMobilebar {...JSON.parse(JSON.stringify(user))} />
       </div>
-      <Footer />
     </div>
   );
 }
