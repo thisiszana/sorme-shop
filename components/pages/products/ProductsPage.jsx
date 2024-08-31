@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import FilterProducts from "./ui/FilterProducts";
 import SearchProducts from "./ui/SearchProducts";
 import ProductCard from "./ui/ProductCard";
+import Pagination from "./ui/Pagination";
 
 export default function ProductsPage({ searchParams }) {
   const { data: allProducts, isLoading: isLoadingAll } = useQuery({
@@ -32,11 +33,17 @@ export default function ProductsPage({ searchParams }) {
         <SearchProducts />
       </div>
       {allProducts.products.length !== 0 ? (
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[15px]">
-          {allProducts.products.map((product) => (
-            <ProductCard key={product._id} {...product} />
-          ))}
-        </section>
+        <>
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[15px]">
+            {allProducts.products.map((product) => (
+              <ProductCard key={product._id} {...product} />
+            ))}
+          </section>
+          <Pagination
+            totalPages={allProducts?.totalPages}
+            searchParams={searchParams}
+          />
+        </>
       ) : (
         <h1>No Products yet!</h1>
       )}
