@@ -1,13 +1,13 @@
 "use client";
 
 import Loader from "@/components/shared/Loader";
-import { getAllProducts, getFilterProducts } from "@/services/queries";
 import { QUERY_KEY } from "@/services/queriesKey";
 import { useQuery } from "@tanstack/react-query";
 import FilterProducts from "./ui/FilterProducts";
 import SearchProducts from "./ui/SearchProducts";
 import ProductCard from "./ui/ProductCard";
 import Pagination from "./ui/Pagination";
+import { getAllProducts, getFilterProducts } from "@/services/queries";
 
 export default function ProductsPage({ searchParams }) {
   const { data: allProducts, isLoading: isLoadingAll } = useQuery({
@@ -28,7 +28,7 @@ export default function ProductsPage({ searchParams }) {
 
   console.log(allProducts, filteredProduct);
 
-  if (isLoadingAll)
+  if (isLoadingAll || isLoadingFilered)
     return (
       <main className="w-full flex justify-center mt-[350px]">
         <Loader h={70} w={70} />

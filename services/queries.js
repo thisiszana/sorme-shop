@@ -29,3 +29,4 @@ export const getFilterProducts = async (searchParams) => {
     return null;
   }
 };
+
