@@ -1,9 +1,13 @@
 "use client";
 
 import useSession from "@/hooks/useSession";
+import { useEffect } from "react";
 
 export default function AddToCart() {
   const { data: session } = useSession();
-  console.log(session);
+  
+  // useEffect(()=>{
+  //   if (session?.status === "authorized")
+  // },[])
   return <div>AddToCart</div>;
 }
