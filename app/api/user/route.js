@@ -14,7 +14,7 @@ export async function GET(req) {
   }
 
   try {
-    const users = await UserSorme.find();
+    const users = await UserSorme.find().select("-password").lean();
 
     const response = NextResponse.json(
       { msg: "Success", success: true, users },
