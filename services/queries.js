@@ -1,3 +1,7 @@
+import api from "@/configs/api";
+
+export const getSession = () => api.get("/api/auth").then((res) => res.json);
+
 export const getAllProducts = async () => {
   try {
     const res = await fetch(
@@ -29,4 +33,3 @@ export const getFilterProducts = async (searchParams) => {
     return null;
   }
 };
-
