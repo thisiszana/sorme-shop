@@ -1,6 +1,6 @@
 import ProductDetailsPage from "@/components/pages/productDetail/ProductDetailsPage";
 
-import { getProduct } from "@/actions/product.action";
+import { getProduct } from "@/services/queries";
 
 export default async function ProductsDetail({ params }) {
   return <ProductDetailsPage id={params.id} />;

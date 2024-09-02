@@ -137,6 +137,7 @@ export const icons = {
   basket: <PiBasketThin />,
   home: <GoHome />,
   admin: <RiAdminLine />,
+  addToCart: <TbShoppingBagPlus />,
 };
 
 export const navLinks = [

@@ -4,7 +4,7 @@ import Link from "next/link";
 import moment from "moment";
 
 import TextHeader from "@/components/shared/TextHeader";
-import { getProduct } from "@/actions/product.action";
+import { getProduct } from "@/services/queries";
 import { reducePrice, shorterText } from "@/utils/fun";
 import AddToCart from "./AddToCart";
 
@@ -14,7 +14,6 @@ export default async function ProductSection({ id }) {
   const { _id, title, image, price, stock, discount, description, category } =
     product?.product.product;
 
-    console.log("product .....", product.product.product)
   return (
     <>
       <section className="flex max-lg:flex-col gap-5">
@@ -77,7 +76,10 @@ export default async function ProductSection({ id }) {
               </div>
             )}
             {stock > 0 && (
-              <AddToCart productId={JSON.parse(JSON.stringify(_id))} />
+              <AddToCart
+                productId={JSON.parse(JSON.stringify(_id))}
+                stock={stock}
+              />
             )}
             {stock === 0 && (
               <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">

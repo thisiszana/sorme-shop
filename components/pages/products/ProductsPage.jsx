@@ -26,7 +26,7 @@ export default function ProductsPage({ searchParams }) {
     refetchInterval: 10000,
   });
 
-  console.log(allProducts, filteredProduct);
+  // console.log(allProducts, filteredProduct);
 
   if (isLoadingAll || isLoadingFilered)
     return (
