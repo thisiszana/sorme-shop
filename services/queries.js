@@ -1,6 +1,14 @@
 import api from "@/configs/api";
 
-export const getSession = () => api.get("/api/auth").then((res) => res.json);
+export const getSession = () => {
+  return api
+    .get("/api/auth")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error("Error fetching session data:", error);
+      return null;
+    });
+};
 
 export const getAllProducts = async () => {
   try {

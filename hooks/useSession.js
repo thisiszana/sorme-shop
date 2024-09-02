@@ -1,8 +1,9 @@
 "use client";
 
-const { getSession } = require("@/services/queries");
-const { QUERY_KEY } = require("@/services/queriesKey");
-const { useQuery } = require("@tanstack/react-query");
+import { useQuery } from "@tanstack/react-query";
+
+import { QUERY_KEY } from "@/services/queriesKey";
+import { getSession } from "@/services/queries";
 
 const useSession = () => {
   const { data, error, isError, isLoading } = useQuery({

@@ -1,7 +1,9 @@
-import React from 'react'
+"use client";
+
+import useSession from "@/hooks/useSession";
 
 export default function AddToCart() {
-  return (
-    <div>AddToCart</div>
-  )
+  const { data: session } = useSession();
+  console.log(session);
+  return <div>AddToCart</div>;
 }
