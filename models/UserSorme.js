@@ -38,6 +38,7 @@ const userSchema = new Schema(
         {
           productId: { type: Schema.Types.ObjectId, ref: "Products" },
           quantity: { type: Number, default: 0 },
+          productDetails: { type: Object, default: {} },
         },
       ],
       selectedItems: [{ type: Schema.Types.ObjectId, ref: "Products" }],

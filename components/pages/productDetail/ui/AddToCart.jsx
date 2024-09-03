@@ -28,8 +28,6 @@ export default function AddToCart({ productId, stock }) {
     enabled: false,
   });
 
-  console.log(data?.cart);
-
   const router = useRouter();
 
   const { loading: addLoading, res: addRes } = useServerAction(
@@ -80,7 +78,7 @@ export default function AddToCart({ productId, stock }) {
 
   if (isLoading && isFetching)
     return (
-      <div className="mt-[20px] text-white bg-gray-800 font-semibold w-full py-3 rounded-lg flex justify-center">
+      <div className="font-semibold w-[25%] mt-[160px] py-2 rounded-lg flex justify-center bg-black text-white">
         <Loader h={20} w={20} color="#fff" />
       </div>
     );
