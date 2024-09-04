@@ -20,7 +20,7 @@ export const addToCart = async (data) => {
       };
 
     const user = await UserSorme.findById(session.userId);
-
+    
     if (!user)
       return {
         message: MESSAGES.userNotFound,
@@ -42,7 +42,7 @@ export const addToCart = async (data) => {
       };
 
     const existingCartItemIndex = user.cart.items.findIndex((item) =>
-      item.productId.equals(productId)
+      item.productId?.equals(productId)
     );
 
     if (existingCartItemIndex !== -1) {
@@ -73,6 +73,7 @@ export const addToCart = async (data) => {
       code: STATUS_CODES.success,
     };
   } catch (error) {
+    console.log("error ocured", error.message)
     return {
       message: MESSAGES.server,
       status: MESSAGES.failed,

@@ -32,7 +32,7 @@ const userSchema = new Schema(
       enum: ["man", "female", "etc"],
       default: "etc",
     },
-    orders: [{ type: Schema.Types.ObjectId, ref: "Order", default: [] }],
+    orders: [{ type: Schema.Types.ObjectId, ref: "OrderSorme", default: [] }],
     cart: {
       items: [
         {

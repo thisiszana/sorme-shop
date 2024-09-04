@@ -6,8 +6,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { useQuery } from "@tanstack/react-query";
+import { Tooltip } from "antd";
 
-import { ShoppingCart, User } from "../icons/Icons";
+import { Exclamation, ShoppingCart, User } from "../icons/Icons";
 
 import CartDrawer from "../shared/cart/CartDrawer";
 import { QUERY_KEY } from "@/services/queriesKey";
@@ -54,6 +55,7 @@ export default function Header() {
           >
             {<User />}
           </Link>
+
           <button
             disabled={isLoading}
             onClick={() => setOpenCart(true)}

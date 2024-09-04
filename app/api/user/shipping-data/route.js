@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
-import { getServerSession } from "@/utils/session";
 import { UserSorme } from "@/models/UserSorme";
 import { connectDB } from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
 import axios from "axios";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -18,9 +18,15 @@ export async function GET() {
         code: 200,
       });
 
-    const cart = await UserSorme.findById(session.userId).select("cart");
+    const user = await UserSorme.findById(session.userId).select([
+      "username",
+      "displayName",
+      "phoneNumber",
+      "address",
+      "cart",
+    ]);
 
-    if (!cart) {
+    if (!user)
       return NextResponse.json(
         {
           message: "User not found!",
@@ -31,50 +37,38 @@ export async function GET() {
           status: 404,
         }
       );
-    }
 
-    const productIds = cart.cart.items.map((item) =>
+    const productIds = user.cart.items.map((item) =>
       item.productId?.toString()
     );
 
     const products = [];
-    try {
-      for (let id of productIds) {
-        const { data } = await axios.get(
-          `https://admin-dahboard-shop.vercel.app/api/products/${id}`
-        );
 
-        products.push(data.product);
-      }
-    } catch (error) {
-      console.error(
-        `Error fetching product with id ${productIds}:`,
-        error.message
+    for (let id of productIds) {
+      const { data } = await axios.get(
+        `https://admin-dahboard-shop.vercel.app/api/products/${id}`
       );
+      products.push(data.product);
     }
-    // console.log("product....", products)
 
-    cart.cart.items.forEach((item) => {
+    user.cart.items.forEach((item) => {
       const productDetails = products.find(
         (product) => product._id === item.productId?.toString()
       );
-      // console.log("product details", productDetails)
-      if (productDetails) {
-        item.productDetails = productDetails;
-      }
-    });
-    // console.log("updated cart", cart.cart.items)
 
-    await cart.save();
+      if (productDetails) item.productDetails = productDetails;
+    });
+
+    await user.save();
 
     return NextResponse.json({
-      cart: cart.cart,
-      message: "Fetched!",
+      user,
+      message: "Fetched",
       status: "success",
       code: 200,
     });
   } catch (error) {
-    console.error("Error occurred:", error.message);
+    console.log("error messsage", error);
     return NextResponse.json(
       {
         message: "Server Error!",

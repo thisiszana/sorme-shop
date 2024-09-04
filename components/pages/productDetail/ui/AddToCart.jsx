@@ -5,7 +5,7 @@ import {
   decreaseFromCart,
   deleteFromCart,
 } from "@/actions/cart.action";
-import { Trash } from "@/components/icons/Icons";
+import { Exclamation, Trash } from "@/components/icons/Icons";
 import Loader from "@/components/shared/Loader";
 import { icons } from "@/constants";
 import useServerAction from "@/hooks/useServerAction";
@@ -14,6 +14,7 @@ import { getUserCart } from "@/services/queries";
 import { QUERY_KEY } from "@/services/queriesKey";
 import { isInCart, productQuantity } from "@/utils/fun";
 import { useQuery } from "@tanstack/react-query";
+import { Tooltip } from "antd";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -71,14 +72,14 @@ export default function AddToCart({ productId, stock }) {
 
   if (isError)
     return (
-      <div className="mt-[20px] text-center bg-red-100 rounded-lg py-2">
-        <p className="text-red-500">Error!</p>
-      </div>
+      <Tooltip title="Failed to fetch data!" placement="left">
+        <Exclamation size={20} className="text-darkRose" />
+      </Tooltip>
     );
 
   if (isLoading && isFetching)
     return (
-      <div className="font-semibold w-[25%] mt-[160px] py-2 rounded-lg flex justify-center bg-black text-white">
+      <div className="font-semibold w-[25%] py-2 rounded-lg flex justify-center bg-black text-white">
         <Loader h={20} w={20} color="#fff" />
       </div>
     );
@@ -87,7 +88,7 @@ export default function AddToCart({ productId, stock }) {
   const quantity = productQuantity(productId, data?.cart?.items);
 
   return (
-    <div className="mt-[160px] flex items-center gap-2 w-[25%]">
+    <div className="flex items-center gap-2 w-[25%]">
       {isProductInCart < 0 ? (
         <button
           type="button"

@@ -36,3 +36,21 @@ export const reducePrice = (discount, price) => {
   const finalValue = price - discountValue;
   return finalValue;
 };
+
+export const calculateTotalPrice = (items) => {
+  return items.reduce(
+    (prev, current) => prev + current.productDetails.price * current.quantity,
+    0
+  );
+};
+
+export const calculateTotalDiscount = (items) => {
+  return items.reduce(
+    (prev, current) =>
+      prev +
+      (current.quantity *
+        (current.productDetails.price * current.productDetails.discount)) /
+        100,
+    0
+  );
+};

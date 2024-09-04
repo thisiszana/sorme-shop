@@ -20,6 +20,16 @@ export const getUserCart = () => {
     });
 };
 
+export const getShippingData = () => {
+  return api
+    .get("/api/user/shipping-data")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error("Error fetching session data:", error);
+      return null;
+    });
+};
+
 export const getAllProducts = async () => {
   try {
     const res = await fetch(

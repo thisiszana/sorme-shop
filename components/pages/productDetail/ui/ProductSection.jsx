@@ -27,34 +27,33 @@ export default async function ProductSection({ id }) {
             className="max-md:w-[250px] max-w-[400px] max-h-[400px] object-cover"
           />
         </div>
-        <div className="space-y-2 lg:w-[50%]">
-          <h1 className="font-black text-[30px]">{title}</h1>
-
-          <div className="flex items-center gap-3">
-            <Link
-              target="_blank"
-              href={"/"} // کار داره هنوز
-              className="capitalize font-medium"
-            >
-              {category}
-            </Link>
-            <p className="text-gray-300">|</p>
-            {stock > 0 ? (
-              <p className="text-green-500">In Stock</p>
-            ) : (
-              <p className="text-red-500">Out of stock!</p>
-            )}
-            {stock > 0 && stock <= 10 && (
-              <>
-                <p className="text-gray-300">|</p>
-                <p className="text-red-600 font-medium text-[12px]">
-                  Only {stock} Remains
-                </p>
-              </>
-            )}
-          </div>
-
+        <div className="flex flex-col justify-between space-y-2 lg:w-[50%]">
           <div>
+            <h1 className="font-black text-[30px]">{title}</h1>
+
+            <div className="flex items-center gap-3">
+              <Link
+                target="_blank"
+                href={"/"} // کار داره هنوز
+                className="capitalize font-medium"
+              >
+                {category}
+              </Link>
+              <p className="text-gray-300">|</p>
+              {stock > 0 ? (
+                <p className="text-green-500">In Stock</p>
+              ) : (
+                <p className="text-red-500">Out of stock!</p>
+              )}
+              {stock > 0 && stock <= 10 && (
+                <>
+                  <p className="text-gray-300">|</p>
+                  <p className="text-red-600 font-medium text-[12px]">
+                    Only {stock} Remains
+                  </p>
+                </>
+              )}
+            </div>
             {stock > 0 && (
               <>
                 <div className="flex items-center gap-5 mb-[20px]">
@@ -75,18 +74,18 @@ export default async function ProductSection({ id }) {
                 <p>{shorterText(description, 500)}</p>
               </div>
             )}
-            {stock > 0 && (
-              <AddToCart
-                productId={JSON.parse(JSON.stringify(_id))}
-                stock={stock}
-              />
-            )}
-            {stock === 0 && (
-              <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">
-                <p className="font-bold">Out of stock!</p>
-              </div>
-            )}
           </div>
+          {stock > 0 && (
+            <AddToCart
+              productId={JSON.parse(JSON.stringify(_id))}
+              stock={stock}
+            />
+          )}
+          {stock === 0 && (
+            <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">
+              <p className="font-bold">Out of stock!</p>
+            </div>
+          )}
         </div>
       </section>
       <Reviews {...product.product.product} />

@@ -25,7 +25,7 @@ export default function CartItemCard({
     { productDetails: _id },
     () => queryClient.invalidateQueries(QUERY_KEY.user_cart)
   );
-  console.log(QUERY_KEY.user_cart)
+  
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-[20px]">
