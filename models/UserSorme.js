@@ -33,6 +33,7 @@ const userSchema = new Schema(
       default: "etc",
     },
     orders: [{ type: Schema.Types.ObjectId, ref: "OrderSorme", default: [] }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "CommentSorme", default: [] }],
     cart: {
       items: [
         {

@@ -1,27 +1,72 @@
 "use server";
 
-export const getProduct = async (id) => {
+import { CommentsSorme } from "@/models/CommentSorme";
+import { UserSorme } from "@/models/UserSorme";
+import { connectDB } from "@/utils/connectDB";
+import { MESSAGES, STATUS_CODES } from "@/utils/message";
+import { getServerSession } from "@/utils/session";
+import axios from "axios";
+
+export const addProductComment = async (data) => {
   try {
-    const response = await fetch(
-      `https://admin-dahboard-shop.vercel.app/api/products/${id}`
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session)
+      return {
+        message: MESSAGES.unAuthorized,
+        status: MESSAGES.failed,
+        code: STATUS_CODES.unAuthorized,
+      };
+
+    const {
+      form: { title, description },
+      productId,
+      userId,
+    } = data;
+
+    const user = await UserSorme.findById(userId);
+    const newComment = await CommentsSorme.create({
+      title,
+      description,
+      productId,
+      senderId: userId,
+    });
+
+    await axios.post(
+      `https://admin-dahboard-shop.vercel.app/api/products/${productId}`,
+      { commentId: newComment._id }
     );
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch product data");
-    }
+    console.log(user)
 
-    const product = await response.json();
+    await user.comments.push(newComment._id);
+    await user.save();
 
     return {
-      product,
-      status: "success",
-      code: 200,
+      message: MESSAGES.addComment,
+      status: MESSAGES.success,
+      code: STATUS_CODES.success,
     };
   } catch (error) {
+    console.log("error ....", error.message);
     return {
-      product: null,
-      status: "failed",
-      code: 500,
+      message: MESSAGES.server,
+      status: MESSAGES.failed,
+      code: STATUS_CODES.server,
+    };
+  }
+};
+
+export const getProductComment = async (id) => {
+  try {
+    await connectDB();
+  } catch (error) {
+    return {
+      message: MESSAGES.server,
+      status: MESSAGES.failed,
+      code: STATUS_CODES.server,
     };
   }
 };
