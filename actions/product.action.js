@@ -39,8 +39,6 @@ export const addProductComment = async (data) => {
       { commentId: newComment._id }
     );
 
-    console.log(user)
-
     await user.comments.push(newComment._id);
     await user.save();
 
@@ -50,7 +48,7 @@ export const addProductComment = async (data) => {
       code: STATUS_CODES.success,
     };
   } catch (error) {
-    console.log("error ....", error.message);
+    console.log("error in add comment ....", error.message);
     return {
       message: MESSAGES.server,
       status: MESSAGES.failed,
@@ -62,7 +60,29 @@ export const addProductComment = async (data) => {
 export const getProductComment = async (id) => {
   try {
     await connectDB();
+
+    const comments = await CommentsSorme.find({ productId: id })
+      .populate({
+        path: "senderId",
+        model: UserSorme,
+      })
+      .lean();
+
+    const filteredComments = comments.filter((comment) => comment.published);
+
+    // const { data } = await axios.get(
+    //   `https://admin-dahboard-shop.vercel.app/api/products/${id}`
+    // );
+
+    return {
+      comments: filteredComments,
+      status: "success",
+      code: 200,
+    };
+
+
   } catch (error) {
+    console.log("comment", error.message);
     return {
       message: MESSAGES.server,
       status: MESSAGES.failed,

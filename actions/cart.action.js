@@ -30,7 +30,7 @@ export const addToCart = async (data) => {
 
     const { productId } = data;
 
-    const product = axios.get(
+    const product = await axios.get(
       `https://admin-dahboard-shop.vercel.app/api/products/${productId}`
     );
 
