@@ -4,14 +4,15 @@ import ProductCard from "../../products/ui/ProductCard";
 
 export default async function RelatedProducts({ id }) {
   const data = await getRelatedProducts(id);
+  console.log("dataaaaaaa front", data.relatedProducts)
   return (
     <section>
       <div className="textHeaderPosition">
         <TextHeader title="Related Products" />
       </div>
-      {data.relatedProducts.relatedProducts.length > 0 ? (
+      {data.relatedProducts?.relatedProducts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {data.relatedProducts.relatedProducts.map((el) => (
+          {data.relatedProducts?.relatedProducts.map((el) => (
             <ProductCard {...el} key={el._id} />
           ))}
         </div>
