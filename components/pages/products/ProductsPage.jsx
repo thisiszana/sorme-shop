@@ -26,12 +26,10 @@ export default function ProductsPage({ searchParams }) {
     refetchInterval: 10000,
   });
 
-  // console.log(allProducts, filteredProduct);
-
   if (isLoadingAll || isLoadingFilered)
     return (
       <main className="w-full flex justify-center mt-[350px]">
-        <Loader h={70} w={70} />
+        <Loader />
       </main>
     );
 

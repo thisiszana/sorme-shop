@@ -19,6 +19,15 @@ export const getUserCart = () => {
       return null;
     });
 };
+export const getUserCartData = () => {
+  return api
+    .get("/api/user/data")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error("Error fetching session data:", error);
+      return null;
+    });
+};
 
 export const getShippingData = () => {
   return api
