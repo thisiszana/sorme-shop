@@ -70,19 +70,34 @@ export const getProductComment = async (id) => {
 
     const filteredComments = comments.filter((comment) => comment.published);
 
-    // const { data } = await axios.get(
-    //   `https://admin-dahboard-shop.vercel.app/api/products/${id}`
-    // );
-
     return {
       comments: filteredComments,
       status: "success",
       code: 200,
     };
-
-
   } catch (error) {
     console.log("comment", error.message);
+    return {
+      message: MESSAGES.server,
+      status: MESSAGES.failed,
+      code: STATUS_CODES.server,
+    };
+  }
+};
+
+export const getRelatedProducts = async (id) => {
+  try {
+    const { data: relatedProducts } = await axios.get(
+      `https://admin-dahboard-shop.vercel.app/api/products/related/${id}`
+    );
+
+    return {
+      message: MESSAGES.success,
+      status: MESSAGES.success,
+      code: STATUS_CODES.success,
+      relatedProducts,
+    };
+  } catch (error) {
     return {
       message: MESSAGES.server,
       status: MESSAGES.failed,

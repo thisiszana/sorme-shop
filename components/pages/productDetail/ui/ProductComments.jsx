@@ -6,7 +6,7 @@ import ShowComments from "./ShowComments";
 
 export default async function ProductComments({ id }) {
   const data = await getProductComment(id);
-  console.log("zanaamanallhy90 .......", data);
+
   return (
     <section>
       <TextHeader

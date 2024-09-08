@@ -28,6 +28,7 @@ export const MESSAGES = {
   errorOccurred: "An error occurred!",
   errorUpdateProfile: "An error occurred while updating the profile.",
   userNotFound: "Username or password is In-Correct!",
+  productNotFound: "Product not found!",
   noMatchPassword: "Current Password is in-correct!",
   confirmPass: "The password is not the same.",
   forbidden: "Access Denied!",
