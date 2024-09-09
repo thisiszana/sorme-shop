@@ -58,13 +58,12 @@ export const createOrder = async (data) => {
       summary,
     });
 
-
     for (let item of items) {
       try {
         const { data: product } = await axios.get(
           `https://admin-dahboard-shop.vercel.app/api/products/${item.productId}`
         );
-        console.log("product payment .... 1", product.product)
+        console.log("product payment .... 1", product.product);
         product.product.stock -= item.quantity;
         product.product.orders = product.product.orders || [];
         product.product.orders.push({
@@ -106,6 +105,40 @@ export const createOrder = async (data) => {
 
     return {
       message: "Order completed",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      message: MESSAGES.server,
+      status: MESSAGES.failed,
+      code: STATUS_CODES.server,
+    };
+  }
+};
+
+export const getUserOrders = async () => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session)
+      return {
+        message: MESSAGES.unAuthorized,
+        status: MESSAGES.failed,
+        code: STATUS_CODES.unAuthorized,
+      };
+
+    const orders = await UserSorme.findById(session.userId)
+      .populate({
+        path: "orders",
+        model: OrderSorme,
+      })
+      .select("orders");
+
+    return {
+      orders,
       status: "success",
       code: 200,
     };
