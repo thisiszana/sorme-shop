@@ -150,3 +150,54 @@ export const getUserOrders = async () => {
     };
   }
 };
+
+export const getOrderDetails = async (id) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session)
+      return {
+        message: MESSAGES.unAuthorized,
+        status: MESSAGES.failed,
+        code: STATUS_CODES.unAuthorized,
+      };
+
+    const order = await OrderSorme.findOne({ _id: id }).lean();
+
+    const productDetails = [];
+    for (let item of order.items) {
+      try {
+        const product = await axios.get(
+          `https://admin-dahboard-shop.vercel.app/api/products/${item.productId.toString()}`
+        );
+        console.log("Product data:", product.data);
+        productDetails.push({ ...item, product: product.data });
+      } catch (error) {
+        console.error(`Error fetching details for product ${item.productId}:`, error);
+      }
+    }
+
+    console.log("Product Details:", productDetails);
+
+    return {
+      message: "Order details retrieved successfully",
+      status: MESSAGES.success,
+      code: 200,
+      order: {
+        ...order,
+        items: productDetails,
+      },
+    };
+  } catch (error) {
+    console.log("Server error:", error.message);
+    return {
+      message: MESSAGES.server,
+      status: MESSAGES.failed,
+      code: STATUS_CODES.server,
+    };
+  }
+};
+
+

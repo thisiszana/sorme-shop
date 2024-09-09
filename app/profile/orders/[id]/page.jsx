@@ -1,7 +1,13 @@
-import React from 'react'
+import { shorterText } from "@/utils/fun";
 
-export default function page() {
-  return (
-    <div>page</div>
-  )
+import OrderDetailsPage from "@/components/profiles/orders/orderDetails/OrderDetailsPage";
+
+export default function OrderDetails({ params: { id } }) {
+  return <OrderDetailsPage id={id} />;
+}
+
+export async function generateMetadata({ params: { id } }) {
+  return {
+    title: `Orders | ${shorterText(id, 10)}`,
+  };
 }

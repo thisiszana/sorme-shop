@@ -1,4 +1,5 @@
-import OrdersPage from "@/components/pages/orders/OrdersPage";
+import OrdersPage from "@/components/profiles/orders/OrdersPage";
+
 
 export default function page() {
   return <OrdersPage />;

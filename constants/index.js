@@ -364,3 +364,36 @@ export const orderColumn = [
     key: "detail",
   },
 ];
+
+export const productColumn = [
+  {
+    title: "Image",
+    dataIndex: "image",
+    key: "image",
+  },
+  {
+    title: "Title",
+    dataIndex: "title",
+    key: "title",
+  },
+  {
+    title: "Cost",
+    dataIndex: "cost",
+    key: "cost",
+  },
+  {
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
+    title: "Discount",
+    dataIndex: "discount",
+    key: "discount",
+  },
+  {
+    title: "Total",
+    dataIndex: "total",
+    key: "total",
+  },
+];
