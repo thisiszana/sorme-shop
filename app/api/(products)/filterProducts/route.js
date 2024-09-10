@@ -18,7 +18,7 @@ export async function GET(request) {
       );
     }
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         message: "Success",
         status: "success",
@@ -27,6 +27,9 @@ export async function GET(request) {
       },
       { status: 200 }
     );
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     console.error("Error fetching filtering products:", error);
     return NextResponse.json(

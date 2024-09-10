@@ -41,7 +41,7 @@ export const getShippingData = async () => {
 
 export const getAllProducts = async () => {
   return api
-    .get("/api/allProducts")
+    .get("/api/products")
     .then((res) => res.data)
     .catch((error) => {
       console.error("Error fetching session data:", error);

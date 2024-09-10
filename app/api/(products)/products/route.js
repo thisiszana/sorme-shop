@@ -15,7 +15,7 @@ export async function GET() {
       );
     }
 
-    return NextResponse.json(
+    const res =  NextResponse.json(
       {
         message: "Success",
         status: "success",
@@ -24,6 +24,9 @@ export async function GET() {
       },
       { status: 200 }
     );
+
+    res.headers.set("Cache-Control", "no-store");
+    return res;
   } catch (error) {
     console.log("allProducts error", error.message);
     return NextResponse.json(

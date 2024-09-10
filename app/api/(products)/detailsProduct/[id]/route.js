@@ -17,7 +17,7 @@ export async function GET(request, { params }) {
       );
     }
 
-    return NextResponse.json(
+    const res= NextResponse.json(
       {
         product: response.data,
         message: MESSAGES.success,
@@ -26,6 +26,9 @@ export async function GET(request, { params }) {
       },
       { status: 200 }
     );
+
+    res.headers.set("Cache-Control", "no-store");
+    return res;
   } catch (error) {
     console.error("Error fetching product:", error);
     return NextResponse.json(
