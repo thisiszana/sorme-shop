@@ -29,7 +29,7 @@ export async function GET(req, { params: { id } }) {
         { status: 400 }
       );
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         msg: "success",
         success: true,
@@ -37,6 +37,9 @@ export async function GET(req, { params: { id } }) {
       },
       { status: 200 }
     );
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     return NextResponse.json(
       { msg: "Server Error!", success: false },

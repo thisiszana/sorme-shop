@@ -61,12 +61,15 @@ export async function GET() {
 
     await user.save();
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       user,
       message: "Fetched",
       status: "success",
       code: 200,
     });
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     console.log("error messsage", error);
     return NextResponse.json(

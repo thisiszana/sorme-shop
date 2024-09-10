@@ -63,7 +63,7 @@ export const getFilterProducts = async (searchParams) => {
 
 export const getProduct = async (id) => {
   return api
-    .get(`/api/detailsProduct/${id}`)
+    .get(`/api/productDetails/${id}`)
     .then((res) => res.data)
     .catch((error) => {
       console.error("Error fetching filtering products:", error);

@@ -67,12 +67,15 @@ export async function GET() {
 
     await cart.save();
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       cart: cart.cart,
       message: "Fetched!",
       status: "success",
       code: 200,
     });
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     console.error("Error occurred:", error.message);
     return NextResponse.json(

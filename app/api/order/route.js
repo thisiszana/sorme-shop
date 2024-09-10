@@ -14,12 +14,15 @@ export async function GET() {
       })
       .lean();
 
-    return NextResponse.json({
+    const response =  NextResponse.json({
       orders,
       message: "success",
       status: "success",
       code: 200,
     });
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     return NextResponse.json(
       {

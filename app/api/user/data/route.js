@@ -55,7 +55,7 @@ export async function GET() {
 
     console.log("cart Itmssssssss",cartItems);
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         message: "Success",
         status: "success",
@@ -65,6 +65,9 @@ export async function GET() {
       },
       { status: 200 }
     );
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     console.log("Error .......................:", error.message);
     return NextResponse.json(
