@@ -1,6 +1,6 @@
 import api from "@/configs/api";
 
-export const getSession = () => {
+export const getSession = async () => {
   return api
     .get("/api/auth")
     .then((res) => res.data)
@@ -10,7 +10,7 @@ export const getSession = () => {
     });
 };
 
-export const getUserCart = () => {
+export const getUserCart = async () => {
   return api
     .get("/api/user/cart")
     .then((res) => res.data)
@@ -19,7 +19,7 @@ export const getUserCart = () => {
       return null;
     });
 };
-export const getUserCartData = () => {
+export const getUserCartData = async () => {
   return api
     .get("/api/user/data")
     .then((res) => res.data)
@@ -29,7 +29,7 @@ export const getUserCartData = () => {
     });
 };
 
-export const getShippingData = () => {
+export const getShippingData = async () => {
   return api
     .get("/api/user/shipping-data")
     .then((res) => res.data)
@@ -39,7 +39,7 @@ export const getShippingData = () => {
     });
 };
 
-export const getAllProducts = () => {
+export const getAllProducts = async () => {
   return api
     .get("/api/allProducts")
     .then((res) => res.data)
@@ -49,7 +49,7 @@ export const getAllProducts = () => {
     });
 };
 
-export const getFilterProducts = (searchParams) => {
+export const getFilterProducts = async (searchParams) => {
   const query = new URLSearchParams(searchParams).toString();
 
   return api
