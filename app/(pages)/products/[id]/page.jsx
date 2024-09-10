@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import ProductDetailsPage from "@/components/pages/productDetail/ProductDetailsPage";
 
 import { getProduct } from "@/services/queries";

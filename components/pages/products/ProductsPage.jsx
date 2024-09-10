@@ -15,7 +15,7 @@ export default function ProductsPage({ searchParams }) {
     queryFn: getAllProducts,
     gcTime: 0,
     staleTime: 0,
-    refetchInterval: 10000,
+    // refetchInterval: 10000,
   });
 
   const { data: filteredProduct, isLoading: isLoadingFilered } = useQuery({
@@ -23,7 +23,7 @@ export default function ProductsPage({ searchParams }) {
     queryFn: () => getFilterProducts(searchParams),
     gcTime: 0,
     staleTime: 0,
-    refetchInterval: 10000,
+    // refetchInterval: 10000,
   });
 
   console.log("allProducts", allProducts);

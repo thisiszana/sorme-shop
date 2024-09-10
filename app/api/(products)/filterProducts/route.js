@@ -7,7 +7,8 @@ export async function GET(request) {
     const query = searchParams.toString();
 
     const res = await axios.get(
-      `https://admin-dahboard-shop.vercel.app/api/products?${query}`
+      `https://admin-dahboard-shop.vercel.app/api/products?${query}`,
+      { timeout: 20000 }
     );
 
     if (res.status !== 200) {
