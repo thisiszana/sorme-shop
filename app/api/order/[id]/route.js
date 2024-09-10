@@ -7,17 +7,6 @@ export async function GET(req, { params: { id } }) {
   try {
     await connectDB();
 
-    const session = getServerSession();
-
-    if (!session)
-      return NextResponse.json(
-        {
-          msg: "un-authorized!",
-          success: false,
-        },
-        { status: 404 }
-      );
-
     const order = await OrderSorme.findById(id).lean();
 
     if (!order)
