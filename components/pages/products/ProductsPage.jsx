@@ -26,6 +26,9 @@ export default function ProductsPage({ searchParams }) {
     refetchInterval: 10000,
   });
 
+  console.log("allProducts", allProducts);
+  console.log("filteredProduct", filteredProduct);
+
   if (isLoadingAll || isLoadingFilered)
     return (
       <main className="w-full flex justify-center mt-[350px]">
@@ -37,22 +40,22 @@ export default function ProductsPage({ searchParams }) {
     searchParams && Object.keys(searchParams).length > 0
       ? filteredProduct
       : allProducts;
-
+console.log("productsToShow", productsToShow);
   return (
     <main>
       <div className="flex items-center gap-2 w-full mb-[20px]">
         <FilterProducts />
         <SearchProducts />
       </div>
-      {productsToShow?.products.length !== 0 ? (
+      {productsToShow.product?.products.length !== 0 ? (
         <>
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[15px]">
-            {productsToShow?.products.map((product) => (
+            {productsToShow?.products?.products.map((product) => (
               <ProductCard key={product._id} {...product} />
             ))}
           </section>
           <Pagination
-            totalPages={productsToShow?.totalPages}
+            totalPages={productsToShow.products?.totalPages}
             searchParams={searchParams}
           />
         </>

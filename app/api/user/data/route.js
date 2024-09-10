@@ -1,9 +1,9 @@
 import { CommentsSorme } from "@/models/CommentSorme";
+import { getServerSession } from "@/utils/session";
 import { UserSorme } from "@/models/UserSorme";
 import { connectDB } from "@/utils/connectDB";
-import { getServerSession } from "@/utils/session";
-import axios from "axios";
 import { NextResponse } from "next/server";
+import axios from "axios";
 
 export async function GET() {
   try {

@@ -4,7 +4,6 @@ import ProductCard from "../../products/ui/ProductCard";
 
 export default async function RelatedProducts({ id }) {
   const data = await getRelatedProducts(id);
-  console.log("dataaaaaaa front", data.relatedProducts)
   return (
     <section>
       <div className="textHeaderPosition">

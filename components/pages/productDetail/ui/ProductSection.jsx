@@ -4,13 +4,13 @@ import Link from "next/link";
 import moment from "moment";
 
 import TextHeader from "@/components/shared/TextHeader";
-import { getProduct } from "@/services/queries";
 import { reducePrice, shorterText } from "@/utils/fun";
+import { getProduct } from "@/services/queries";
 import AddToCart from "./AddToCart";
 
 export default async function ProductSection({ id }) {
   const product = await getProduct(id);
-
+console.log("pro section data", product)
   const { _id, title, image, price, stock, discount, description, category } =
     product?.product.product;
 
