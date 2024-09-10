@@ -36,3 +36,49 @@ export async function GET(req, { params: { id } }) {
     );
   }
 }
+
+export async function PATCH(req, { params: { id } }) {
+  try {
+    await connectDB();
+
+    const { status } = await req.json();
+
+    const session = getServerSession();
+
+    if (!session)
+      return NextResponse.json(
+        {
+          msg: "un-authorized!",
+          success: false,
+        },
+        { status: 404 }
+      );
+
+    const order = await OrderSorme.findById(id);
+
+    if (!order)
+      return NextResponse.json(
+        {
+          msg: "order is not defiend",
+          success: flase,
+        },
+        { status: 400 }
+      );
+
+    order.status = status;
+    await order.save();
+
+    const response = NextResponse.json(
+      { msg: "Order status updated", success: true },
+      { status: 200 }
+    );
+
+    response.headers.set("Cache-Control", "no-store");
+    return response;
+  } catch (error) {
+    return NextResponse.json(
+      { msg: "Server Error!", success: false },
+      { status: 500 }
+    );
+  }
+}
