@@ -19,7 +19,7 @@ export async function GET() {
       .populate({
         path: "senderId",
         model: UserSorme,
-        select: "avatar username displayName",
+        select: "image username displayName",
       })
       .lean();
 
