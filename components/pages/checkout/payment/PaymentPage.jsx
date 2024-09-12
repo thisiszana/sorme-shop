@@ -17,6 +17,7 @@ import { Radio } from "antd";
 import CheckoutSteps from "../shared/CheckoutSteps";
 import { calculateTotalDiscount, calculateTotalPrice, reducePrice } from "@/utils/fun";
 import PayButton from "./ui/PayButton";
+import EmptyCart from "@/components/shared/cart/EmptyCart";
 
 export default function PaymentPage() {
   const [paymentMethod, setPaymentMethod] = useState("Credit Card");
