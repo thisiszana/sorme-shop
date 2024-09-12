@@ -28,7 +28,6 @@ export async function GET(req, { params: { id } }) {
         model: CommentsSorme,
       });
 
-    // بررسی وجود کامنت‌ها
     if (!user.comments || user.comments.length === 0) {
       return NextResponse.json(
         { msg: "No comments found", success: false },
