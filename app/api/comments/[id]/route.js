@@ -48,9 +48,13 @@ export async function POST(req, { params }) {
     const comment = await CommentsSorme.findById(_id);
 
     if (!comment) {
-      return NextResponse.json(
-        { message: "Comment not found", status: "failed", code: 404 },
-        { status: 404 }
+      return new Response(
+        JSON.stringify({
+          message: "Comment not found",
+          status: "failed",
+          code: 404,
+        }),
+        { status: 404, headers: { "Cache-Control": "no-store" } }
       );
     }
 
@@ -75,13 +79,13 @@ export async function POST(req, { params }) {
         const user = await UserSorme.findById(comment.senderId);
 
         if (!user) {
-          return NextResponse.json(
-            {
-              message: " User not found",
+          return new Response(
+            JSON.stringify({
+              message: "User not found",
               status: "failed",
               code: 404,
-            },
-            { status: 404 }
+            }),
+            { status: 404, headers: { "Cache-Control": "no-store" } }
           );
         }
         const user_comment_index = user.comments.findIndex((item) =>
@@ -94,28 +98,29 @@ export async function POST(req, { params }) {
         break;
       }
       default:
-        return NextResponse.json(
-          { message: "Invalid action", status: "failed", code: 400 },
-          { status: 400 }
+        return new Response(
+          JSON.stringify({
+            message: "Invalid action",
+            status: "failed",
+            code: 400,
+          }),
+          { status: 400, headers: { "Cache-Control": "no-store" } }
         );
     }
 
-    const res = NextResponse.json(
-      {
+    return new Response(
+      JSON.stringify({
         message: "Action completed successfully",
         status: "success",
         code: 200,
-      },
-      { status: 200 }
+      }),
+      { status: 200, headers: { "Cache-Control": "no-store" } }
     );
-
-    res.headers.set("Cache-Control", "no-store");
-    return res;
   } catch (error) {
     console.log("API Error:", error.message);
-    return NextResponse.json(
-      { message: "Server Error!", status: "failed", code: 500 },
-      { status: 500 }
+    return new Response(
+      JSON.stringify({ message: "Server Error!", status: "failed", code: 500 }),
+      { status: 500, headers: { "Cache-Control": "no-store" } }
     );
   }
 }
