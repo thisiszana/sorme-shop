@@ -37,3 +37,82 @@ export async function GET(req, { params: { id } }) {
     );
   }
 }
+
+export async function POST(req, { params }) {
+  try {
+    await connectDB();
+
+    const { action, value } = await req.json();
+    const { id: _id } = params;
+
+    const comment = await CommentsSorme.findById(_id);
+
+    if (!comment) {
+      return NextResponse.json(
+        { message: "Comment not found", status: "failed", code: 404 },
+        { status: 404 }
+      );
+    }
+
+    switch (action) {
+      case "publish": {
+        comment.published = true;
+        await comment.save();
+        break;
+      }
+      case "draft": {
+        comment.published = false;
+        await comment.save();
+        break;
+      }
+      case "answer": {
+        comment.answer = value;
+        comment.status = value.length !== 0 ? "Answered" : "Not-Answered";
+        await comment.save();
+        break;
+      }
+      case "delete": {
+        const user = await UserSorme.findById(comment.senderId);
+
+        if (!user) {
+          return NextResponse.json(
+            {
+              message: " User not found",
+              status: "failed",
+              code: 404,
+            },
+            { status: 404 }
+          );
+        }
+        const user_comment_index = user.comments.findIndex((item) =>
+          item.equals(_id)
+        );
+        user.comments.splice(user_comment_index, 1);
+        await user.save();
+
+        await CommentsSorme.findByIdAndDelete(_id);
+        break;
+      }
+      default:
+        return NextResponse.json(
+          { message: "Invalid action", status: "failed", code: 400 },
+          { status: 400 }
+        );
+    }
+
+    return NextResponse.json(
+      {
+        message: "Action completed successfully",
+        status: "success",
+        code: 200,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log("API Error:", error.message);
+    return NextResponse.json(
+      { message: "Server Error!", status: "failed", code: 500 },
+      { status: 500 }
+    );
+  }
+}
