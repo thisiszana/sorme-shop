@@ -100,7 +100,7 @@ export async function POST(req, { params }) {
         );
     }
 
-    return NextResponse.json(
+    const res = NextResponse.json(
       {
         message: "Action completed successfully",
         status: "success",
@@ -108,6 +108,9 @@ export async function POST(req, { params }) {
       },
       { status: 200 }
     );
+
+    res.headers.set("Cache-Control", "no-store");
+    return res;
   } catch (error) {
     console.log("API Error:", error.message);
     return NextResponse.json(

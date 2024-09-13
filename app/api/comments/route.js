@@ -23,12 +23,15 @@ export async function GET() {
       })
       .lean();
 
-    return NextResponse.json({
+    const res = NextResponse.json({
       comments,
       message: "success",
       status: "success",
       code: 200,
     });
+
+    res.headers.set("Cache-Control", "no-store");
+    return res;
   } catch (error) {
     console.log("comments error", error.message);
     return NextResponse.json(
