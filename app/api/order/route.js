@@ -11,6 +11,7 @@ export async function GET() {
       .populate({
         path: "userId",
         model: UserSorme,
+        select: "-password",
       })
       .lean();
 

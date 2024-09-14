@@ -1,6 +1,7 @@
 import { OrderSorme } from "@/models/OrderSorme";
 import { connectDB } from "@/utils/connectDB";
 import { getServerSession } from "@/utils/session";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params: { id } }) {
@@ -68,6 +69,7 @@ export async function PATCH(req, { params: { id } }) {
     order.status = status;
     await order.save();
 
+    revalidatePath("/api/order");
     const res = NextResponse.json(
       { msg: "Order status updated", success: true },
       { status: 200 }
