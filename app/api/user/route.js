@@ -20,7 +20,11 @@ export async function GET(req) {
       { msg: "Success", success: true, users },
       { status: 200 }
     );
-    response.headers.set("Cache-Control", "no-store");
+
+    response.headers.set(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate"
+    );
     return response;
   } catch (error) {
     return NextResponse.json(

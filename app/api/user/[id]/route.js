@@ -44,8 +44,8 @@ export async function GET(req, { params: { id } }) {
         const { data } = await axios.get(
           `https://admin-dahboard-shop.vercel.app/api/products/${productId}`
         );
-        console.log("data comeback",data)
-        productsData.push(data.product); 
+        console.log("data comeback", data);
+        productsData.push(data.product);
       } catch (error) {
         console.log(
           `Error fetching product with ID: ${productId}`,
@@ -67,7 +67,10 @@ export async function GET(req, { params: { id } }) {
       { msg: "Success", success: true, data: combinedData },
       { status: 200 }
     );
-    response.headers.set("Cache-Control", "no-store");
+    response.headers.set(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate"
+    );
     return response;
   } catch (error) {
     console.log("Error:", error.message);
