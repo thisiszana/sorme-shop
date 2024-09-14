@@ -2,6 +2,7 @@ import { CommentsSorme } from "@/models/CommentSorme";
 import { UserSorme } from "@/models/UserSorme";
 import { connectDB } from "@/utils/connectDB";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req, { params: { id } }) {
   try {
@@ -37,8 +38,6 @@ export async function GET(req, { params: { id } }) {
     );
   }
 }
-
-import axios from "axios";
 
 export async function POST(req, { params }) {
   try {
@@ -109,23 +108,20 @@ export async function POST(req, { params }) {
         );
     }
 
-    const updatedCommentsResponse = await axios.get(
-      "https://sorme-shop.vercel.app/api/comments"
-    );
+    revalidatePath("/api/comments");
 
     const res = NextResponse.json(
       {
         message: "Action completed successfully",
         status: "success",
         code: 200,
-        updatedComments: updatedCommentsResponse.comments,
       },
       {
         status: 200,
       }
     );
 
-    res.headers.set("Cache-Control", "no-store");
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
     return res;
   } catch (error) {
     console.log("API Error:", error.message);

@@ -30,7 +30,7 @@ export async function GET() {
       code: 200,
     });
 
-    res.headers.set("Cache-Control", "no-store");
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
     return res;
   } catch (error) {
     console.log("comments error", error.message);

@@ -68,13 +68,13 @@ export async function PATCH(req, { params: { id } }) {
     order.status = status;
     await order.save();
 
-    const response = NextResponse.json(
+    const res = NextResponse.json(
       { msg: "Order status updated", success: true },
       { status: 200 }
     );
 
-    response.headers.set("Cache-Control", "no-store");
-    return response;
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
+    return res;
   } catch (error) {
     return NextResponse.json(
       { msg: "Server Error!", success: false },
