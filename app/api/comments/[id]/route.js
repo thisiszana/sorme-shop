@@ -38,6 +38,8 @@ export async function GET(req, { params: { id } }) {
   }
 }
 
+import axios from "axios";
+
 export async function POST(req, { params }) {
   try {
     await connectDB();
@@ -107,11 +109,16 @@ export async function POST(req, { params }) {
         );
     }
 
+    const updatedCommentsResponse = await axios.get(
+      "https://sorme-shop.vercel.app/api/comments"
+    );
+
     const res = NextResponse.json(
       {
         message: "Action completed successfully",
         status: "success",
         code: 200,
+        updatedComments: updatedCommentsResponse.comments,
       },
       {
         status: 200,
