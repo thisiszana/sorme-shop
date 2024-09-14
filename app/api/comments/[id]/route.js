@@ -114,7 +114,15 @@ export async function POST(req, { params }) {
         status: "success",
         code: 200,
       }),
-      { status: 200, headers: { "Cache-Control": "no-store" } }
+      {
+        status: 200,
+        headers: {
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      }
     );
   } catch (error) {
     console.log("API Error:", error.message);
