@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { icons } from "@/constants";
 import { Drawer } from "antd";
 import moment from "moment";
 import { useState } from "react";
 
-export default function ShowComments({comments}) {
+export default function ShowComments({ comments }) {
   const [showComments, setShowComments] = useState(false);
 
   const closeDrawer = () => {
@@ -58,10 +58,22 @@ export default function ShowComments({comments}) {
                 <h1 className="subheader">{c.title}</h1>
                 <p className="subtitle">{c.description}</p>
               </div>
+              <div className="mt-4">
+                <h2 className="text-sm font-bold">Reply:</h2>
+                {c.answer ? (
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    <p>{c.answer}</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-400">
+                    No reply for this comment yet.
+                  </p>
+                )}
+              </div>
             </div>
           ))}
         </div>
       </Drawer>
     </>
-  )
+  );
 }
