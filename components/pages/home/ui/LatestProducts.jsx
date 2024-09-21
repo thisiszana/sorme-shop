@@ -84,7 +84,7 @@ export default function LatestProducts() {
         </Link>
       </div>
       <Slider {...settings}>
-        {data?.products.map((product) => (
+        {data?.products?.products.map((product) => (
           <Fragment key={product._id}>
             <ProductCard {...product} />
           </Fragment>
