@@ -198,7 +198,7 @@ export const images = {
   forgotPass: "/images/authForgotPass.webp",
   manavatar: "/images/man-avatar.jpg",
   womanmanavatar: "/images/woman-avatar.jpg",
-  heroimagebaner: "/images/banner.gif",
+  hero_banner: "/images/heroBanner1.jpg",
   banner: "/images/banner123456.png",
   iphone15: "/images/iphone15.png",
   downArrow: "/images/go-down-arrow.svg",

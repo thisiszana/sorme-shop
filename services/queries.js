@@ -48,6 +48,15 @@ export const getAllProducts = async () => {
       return null;
     });
 };
+export const getLatestProducts = async () => {
+  return api
+    .get("/api/latest-products")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error("Error fetching session data:", error);
+      return null;
+    });
+};
 
 export const getFilterProducts = async (searchParams) => {
   const query = new URLSearchParams(searchParams).toString();

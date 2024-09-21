@@ -44,17 +44,6 @@ export async function PATCH(req, { params: { id } }) {
 
     const { status } = await req.json();
 
-    // const session = getServerSession();
-
-    // if (!session)
-    //   return NextResponse.json(
-    //     {
-    //       msg: "un-authorized!",
-    //       success: false,
-    //     },
-    //     { status: 404 }
-    //   );
-
     const order = await OrderSorme.findById(id);
 
     if (!order)
