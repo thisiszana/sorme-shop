@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+
 import axios from "axios";
+
 import { MESSAGES, STATUS_CODES } from "@/utils/message";
 
 export async function GET(request, { params }) {
@@ -17,6 +19,8 @@ export async function GET(request, { params }) {
       );
     }
 
+    console.log("server product for product details", product);
+
     const res = NextResponse.json(
       {
         product: response.data,
@@ -27,10 +31,10 @@ export async function GET(request, { params }) {
       { status: 200 }
     );
 
-    res.headers.set("Cache-Control", "no-store");
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
     return res;
   } catch (error) {
-    console.error("Error fetching product:", error);
+    console.log("Error fetching product:", error.message);
     return NextResponse.json(
       {
         message: MESSAGES.server,
