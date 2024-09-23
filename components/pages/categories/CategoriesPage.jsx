@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function CategoriesPage() {
-  const { categories } = await getCategories();
+  const { categorie } = await getCategories();
 
   if (!categories)
     return (
@@ -13,10 +13,10 @@ export default async function CategoriesPage() {
       </main>
     );
 
-  console.log("categories", categories);
+  console.log("categories", categorie);
   return (
     <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-      {categories?.map((c) => (
+      {categorie?.map((c) => (
         <Link
           key={c.name}
           className="w-fit p-3 cardShadow rounded-xl"
