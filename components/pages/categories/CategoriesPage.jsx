@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function CategoriesPage() {
   const { categorie } = await getCategories();
 
-  if (!categories)
+  if (!categorie)
     return (
       <main className="w-full flex justify-center mt-[350px]">
         <p>Categories not found</p>
