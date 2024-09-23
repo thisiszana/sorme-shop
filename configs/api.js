@@ -36,7 +36,7 @@ const checkConfig = (server) => {
   return config;
 };
 
-const selectServer = "local";
+const selectServer = "production";
 const { baseURL } = checkConfig(selectServer);
 
 const headers = {
