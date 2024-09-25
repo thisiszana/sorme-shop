@@ -43,14 +43,14 @@ export default function LatestProducts() {
         <TextHeader title="Latest Products" />
         <Link
           href="/products"
-          className="bg-white py-2 px-6 sm:py-3 sm:px-8 md:py-3 md:px-10 rounded-lg"
+          className="link-hover pb-2"
         >
           View All Products
         </Link>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between">
-        {data?.products.map((product) => (
+      <div className="flex flex-wrap items-center justify-center md:justify-between gap-5">
+        {data?.products?.products.map((product) => (
           <Fragment key={product._id}>
             <ProductCard {...product} />
           </Fragment>

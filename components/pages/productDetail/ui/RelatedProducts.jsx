@@ -1,3 +1,5 @@
+"use client"
+
 import { getRelatedProducts } from "@/actions/product.action";
 import TextHeader from "@/components/shared/TextHeader";
 import ProductCard from "../../products/ui/ProductCard";

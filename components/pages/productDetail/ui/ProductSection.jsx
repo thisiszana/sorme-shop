@@ -1,6 +1,5 @@
-"use client";
 
-import Image from "next/image";
+
 import Link from "next/link";
 
 import moment from "moment";
@@ -9,125 +8,82 @@ import TextHeader from "@/components/shared/TextHeader";
 import { reducePrice, shorterText } from "@/utils/fun";
 import { getProduct } from "@/services/queries";
 import AddToCart from "./AddToCart";
-import { useEffect, useState } from "react";
-import Loader from "@/components/shared/Loader";
+import ImageBox from "./ImageBox";
 
 export default async function ProductSection({ id }) {
-  const [productDetails, setProductDetails] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [imgUrl, setImgUrl] = useState("");
+  setIsLoading(true);
+  const product = await getProduct(id);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      const product = await getProduct(id);
-      setIsLoading(false);
-      setProductDetails(product);
-    };
-
-    fetchProducts();
-  }, []);
-
-  console.log("productDetails", productDetails);
+  console.log("product", product);
 
   const { _id, title, image, price, stock, discount, description, category } =
-    productDetails?.product.product;
+    product?.product.product;
 
   return (
     <>
-      {isLoading ? (
-        <main>
-          <Loader />
-        </main>
-      ) : (
-        <>
-          <section className="flex max-lg:flex-col gap-5">
-            <div className="w-full xl:w-[50%] h-fit flex flex-col items-center box border">
-              <div className="w-full xl:w-[50%] flex justify-center mb-4">
-                {image?.map((img, index) => (
-                  <Image
-                    src={img}
-                    key={index}
-                    width={500}
-                    height={500}
-                    alt={info?.title}
-                    className="rounded-box"
-                    onClick={() => setImgUrl(img)}
-                  />
-                ))}
-              </div>
-              <div className="flex flex-wrap justify-center gap-2">
-                <Image
-                  src={imgUrl}
-                  width={100}
-                  height={100}
-                  className="rounded-box object-cover"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col justify-between space-y-2 lg:w-[50%]">
-              <div>
-                <h1 className="font-black text-[30px]">{title}</h1>
+      <section className="flex max-lg:flex-col gap-5">
+        <ImageBox image={image} title={title} />
+        <div className="flex flex-col justify-between space-y-2 lg:w-[50%]">
+          <div>
+            <h1 className="font-black text-[30px]">{title}</h1>
 
-                <div className="flex items-center gap-3">
-                  <Link
-                    href={`/products?category=${category}`}
-                    className="capitalize font-medium"
-                  >
-                    {category}
-                  </Link>
-                  <p className="text-gray-300">|</p>
-                  {stock > 0 ? (
-                    <p className="text-green-500">In Stock</p>
-                  ) : (
-                    <p className="text-red-500">Out of stock!</p>
-                  )}
-                  {stock > 0 && stock <= 10 && (
-                    <>
-                      <p className="text-gray-300">|</p>
-                      <p className="text-red-600 font-medium text-[12px]">
-                        Only {stock} Remains
-                      </p>
-                    </>
-                  )}
-                </div>
-                {stock > 0 && (
-                  <>
-                    <div className="flex items-center gap-5 mb-[20px]">
-                      <h1 className="text-blue-500 font-bold text-[30px]">
-                        $ {reducePrice(discount, price).toLocaleString()}
-                      </h1>
-                      {discount > 0 && (
-                        <span className="text-gray-400 line-through text-[15px]">
-                          {price.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                  </>
-                )}
-                {description && (
-                  <div>
-                    <h3 className="font-bold text-[17px]">Description</h3>
-                    <p>{shorterText(description, 500)}</p>
-                  </div>
-                )}
-              </div>
-              {stock > 0 && (
-                <AddToCart
-                  productId={JSON.parse(JSON.stringify(_id))}
-                  stock={stock}
-                />
+            <div className="flex items-center gap-3">
+              <Link
+                href={`/products?category=${category}`}
+                className="capitalize font-medium"
+              >
+                {category}
+              </Link>
+              <p className="text-gray-300">|</p>
+              {stock > 0 ? (
+                <p className="text-green-500">In Stock</p>
+              ) : (
+                <p className="text-red-500">Out of stock!</p>
               )}
-              {stock === 0 && (
-                <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">
-                  <p className="font-bold">Out of stock!</p>
-                </div>
+              {stock > 0 && stock <= 10 && (
+                <>
+                  <p className="text-gray-300">|</p>
+                  <p className="text-red-600 font-medium text-[12px]">
+                    Only {stock} Remains
+                  </p>
+                </>
               )}
             </div>
-          </section>
-          <Reviews {...productDetails.product.product} />
-        </>
-      )}
+            {stock > 0 && (
+              <>
+                <div className="flex items-center gap-5 mb-[20px]">
+                  <h1 className="text-blue-500 font-bold text-[30px]">
+                    $ {reducePrice(discount, price).toLocaleString()}
+                  </h1>
+                  {discount > 0 && (
+                    <span className="text-gray-400 line-through text-[15px]">
+                      {price.toLocaleString()}
+                    </span>
+                  )}
+                </div>
+              </>
+            )}
+            {description && (
+              <div>
+                <h3 className="font-bold text-[17px]">Description</h3>
+                <p>{shorterText(description, 500)}</p>
+              </div>
+            )}
+          </div>
+          {stock > 0 && (
+            <AddToCart
+              productId={JSON.parse(JSON.stringify(_id))}
+              stock={stock}
+            />
+          )}
+          {stock === 0 && (
+            <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">
+              <p className="font-bold">Out of stock!</p>
+            </div>
+          )}
+        </div>
+      </section>
+      <Reviews {...productDetails.product.product} />
     </>
   );
 }

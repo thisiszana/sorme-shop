@@ -99,3 +99,31 @@
 .input1 {
   @apply placeholder:text-xs border border-gray-200 focus:outline focus:outline-black outline-none py-2 px-4 rounded-lg;
 }
+
+.card-image {
+  transition: transform 0.3s ease;
+}
+
+.card-image:hover {
+  transform: scale(1.1);
+}
+
+.link-hover {
+  position: relative;
+  display: inline-block; 
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: blue;
+  transition: width 0.3s ease;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}

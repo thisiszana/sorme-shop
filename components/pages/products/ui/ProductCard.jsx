@@ -1,12 +1,13 @@
-import Image from "next/image";
+
 import Link from "next/link";
 
 import { reducePrice, shorterText } from "@/utils/fun";
+import { Image } from "@nextui-org/react";
 
 export default function ProductCard(props) {
   const { title, image, price, discount, _id } = props;
   return (
-    <div className="rounded-2xl p-4 cardShadow3 flex flex-col justify-between relative">
+    <div className="rounded-2xl p-4 cardShadow3 flex flex-col justify-between relative w-[320px]">
       <div className="mb-[15px]">
         <Link
           className="w-full flex justify-center mx-3 my-10"
@@ -14,11 +15,11 @@ export default function ProductCard(props) {
         >
           <Image
             src={image[0]}
-            width={400}
-            height={400}
+            width={300}
+            height={280}
             alt={title}
             priority
-            className="w-[200px] h-[200px]"
+            className="w-[200px] h-[200px] card-image"
           />
         </Link>
         <p className="subheader">{shorterText(title, 40)}</p>
