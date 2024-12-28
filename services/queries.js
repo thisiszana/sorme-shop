@@ -51,13 +51,10 @@ export const getAllProducts = async () => {
   return responseData;
 };
 export const getLatestProducts = async () => {
-  return api
-    .get("/api/latest-products")
-    .then((res) => res.data)
-    .catch((error) => {
-      console.error("Error fetching session data:", error);
-      return null;
-    });
+  const res = await fetch(`${BASE_URL}/api/latest-products`);
+
+  const responseData = await res.json();
+  return responseData;
 };
 
 export const getFilterProducts = async (searchParams) => {

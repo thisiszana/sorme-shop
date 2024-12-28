@@ -30,7 +30,7 @@ export default function LatestProducts() {
       </main>
     );
 
-  if (data?.code !== 200)
+  if (data?.products.length === 0)
     return (
       <main className="flex justify-center items-center">
         <p>Failed to fetch data, Please try again</p>
@@ -50,7 +50,7 @@ export default function LatestProducts() {
       </div>
 
       <div className="flex flex-wrap items-center justify-center md:justify-between gap-5">
-        {data?.products?.products.map((product) => (
+        {data?.products?.map((product) => (
           <Fragment key={product._id}>
             <ProductCard {...product} />
           </Fragment>
