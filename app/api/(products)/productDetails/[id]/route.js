@@ -31,8 +31,11 @@ export async function GET(request, { params }) {
       { status: 200 }
     );
 
-    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
-    return res;
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (error) {
     console.log("Error fetching product:", error.message);
     return NextResponse.json(

@@ -1,5 +1,4 @@
 
-
 import Link from "next/link";
 
 import moment from "moment";
@@ -11,13 +10,11 @@ import AddToCart from "./AddToCart";
 import ImageBox from "./ImageBox";
 
 export default async function ProductSection({ id }) {
-  setIsLoading(true);
   const product = await getProduct(id);
-
   console.log("product", product);
 
   const { _id, title, image, price, stock, discount, description, category } =
-    product?.product.product;
+    product?.product;
 
   return (
     <>
@@ -83,7 +80,7 @@ export default async function ProductSection({ id }) {
           )}
         </div>
       </section>
-      <Reviews {...productDetails.product.product} />
+      <Reviews {...product.product} />
     </>
   );
 }

@@ -6,8 +6,8 @@ export default function ProductDetailsPage({ id }) {
   return (
     <main className="lg:pt-[30px] space-y-[50px]">
       <ProductSection id={id} />
-      <ProductComments id={id} />
-      <RelatedProducts id={id} />
+      {/* <ProductComments id={id} />
+      <RelatedProducts id={id} /> */}
     </main>
   );
 }

@@ -1,5 +1,11 @@
 import api from "@/configs/api";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://admin-dahboard-shop.vercel.app"
+    : "http://localhost:3001";
+
+
 export const getSession = async () => {
   return api
     .get("/api/auth")
@@ -71,11 +77,10 @@ export const getFilterProducts = async (searchParams) => {
 };
 
 export const getProduct = async (id) => {
-  return api
-    .get(`/api/productDetails/${id}`)
-    .then((res) => res.data)
-    .catch((error) => {
-      console.error("Error fetching filtering products:", error);
-      return null;
-    });
+
+  const res = await fetch(`${BASE_URL}/api/products/${id}`);
+  
+
+  const responseData = await res.json();
+    return responseData;
 };

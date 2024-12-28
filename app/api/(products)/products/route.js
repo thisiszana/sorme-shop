@@ -25,7 +25,13 @@ export async function GET() {
       { status: 200 }
     );
 
-    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
+    res.headers.set("Access-Control-Allow-Origin", "*");
+    res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.headers.set(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
+    res.headers.set("Cache-Control", "no-store");
     return res;
   } catch (error) {
     console.log("allProducts error", error.message);
