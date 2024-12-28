@@ -132,7 +132,7 @@ export default function PaymentPage() {
               <Fragment key={el.productDetails._id}>
                 <div>
                   <Image
-                    src={el.productDetails.image}
+                    src={el.productDetails.image[0]}
                     width={100}
                     height={100}
                     alt={el.productDetails.title}

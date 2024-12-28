@@ -14,7 +14,7 @@ export default function CartProductCard({
       <div className="flex max-lg:flex-col lg:items-center gap-10 w-full">
         <div className="p-4 flex items-center justify-center max-lg:w-full">
           <Image
-            src={image && image}
+            src={image[0]}
             width={200}
             height={200}
             alt={title}
