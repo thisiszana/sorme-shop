@@ -46,7 +46,11 @@ export default function Header() {
         </div>
         <div className="flex items-center mainGap">
           <Link
-            href="/signup"
+            href={
+              session?.status === "authorized"
+                ? "/profile/personal-information"
+                : "/login"
+            }
             className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
               pathname.includes("/profile")
                 ? "border-violet-500 text-violet-600"

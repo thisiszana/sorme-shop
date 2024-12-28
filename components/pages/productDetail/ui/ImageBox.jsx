@@ -5,6 +5,7 @@ import NextImage from "next/image";
 import { useState, useEffect } from "react";
 
 import { Image as NextImageUI } from "@nextui-org/react";
+import { images } from "@/constants";
 
 export default function ImageBox({ image = [], title = "Image" }) {
   const [imgUrl, setImgUrl] = useState("");
@@ -55,7 +56,7 @@ export default function ImageBox({ image = [], title = "Image" }) {
               }`}
               onClick={() => handleImageClick(img)}
               showSkeleton
-              fallbackSrc="/placeholder.png"
+              fallbackSrc={images.image_not_found}
             />
           ))
         ) : (

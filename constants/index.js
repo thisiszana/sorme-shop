@@ -205,6 +205,7 @@ export const images = {
   airpods: "/images/airpods-pro.png",
   gamepad: "/images/gamepad.png",
   empty_cart: "/images/empty-cart.png",
+  image_not_found: "/images/imagenotfound.jfif",
 };
 
 export const footerLinks = [

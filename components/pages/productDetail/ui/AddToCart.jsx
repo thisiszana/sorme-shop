@@ -13,13 +13,15 @@ import useSession from "@/hooks/useSession";
 import { getUserCart } from "@/services/queries";
 import { QUERY_KEY } from "@/services/queriesKey";
 import { isInCart, productQuantity } from "@/utils/fun";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Tooltip } from "antd";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function AddToCart({ productId, stock }) {
   const { data: session } = useSession();
+
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isFetching, isError, refetch } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
@@ -31,22 +33,27 @@ export default function AddToCart({ productId, stock }) {
 
   const router = useRouter();
 
+  const handleRefetchAndInvalidate = () => {
+    refetch();
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_cart] });
+  };
+
   const { loading: addLoading, res: addRes } = useServerAction(
     addToCart,
     { productId },
-    () => refetch()
+    handleRefetchAndInvalidate
   );
 
   const { loading: decreaseLoading, res: decreaseRes } = useServerAction(
     decreaseFromCart,
     { productId },
-    () => refetch()
+    handleRefetchAndInvalidate
   );
 
   const { loading: deleteLoading, res: deleteRes } = useServerAction(
     deleteFromCart,
     { productId },
-    () => refetch()
+    handleRefetchAndInvalidate
   );
 
   const addHandler = async () => {
