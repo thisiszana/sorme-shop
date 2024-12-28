@@ -1,44 +1,40 @@
-
 import Link from "next/link";
-
-import { reducePrice, shorterText } from "@/utils/fun";
 import { Image } from "@nextui-org/react";
+import { reducePrice, shorterText } from "@/utils/fun";
 
-export default function ProductCard(props) {
-  const { title, image, price, discount, _id } = props;
+export default function ProductCard({ title, image, price, discount, _id }) {
+  const finalPrice = reducePrice(discount, price).toLocaleString();
+  const originalPrice = price.toLocaleString();
+
   return (
-    <div className="rounded-2xl p-4 cardShadow3 flex flex-col justify-between relative w-[320px]">
-      <div className="mb-[15px]">
-        <Link
-          className="w-full flex justify-center mx-3 my-10"
-          href={`/products/${_id}`}
-        >
-          <Image
-            src={image[0]}
-            width={300}
-            height={280}
-            alt={title}
-            priority
-            className="w-[200px] h-[200px] card-image"
-          />
-        </Link>
-        <p className="subheader">{shorterText(title, 40)}</p>
-      </div>
-      <div>
-        <div>
-          <div className="flex justify-between">
-            <p className="font-bold text-[20px]">
-              $ {reducePrice(discount, price).toLocaleString()}
-            </p>
-            {discount > 0 && (
-              <span className="bg-red-100 rounded-xl py-1 px-2 text-red-500 absolute right-1 top-1">
-                % {discount}
-              </span>
-            )}
-          </div>
+    <div className="relative w-[320px] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+      <Link
+        href={`/products/${_id}`}
+        className="block relative aspect-w-1 aspect-h-1 bg-gray-100"
+      >
+        <Image
+          src={image[0]}
+          width={320}
+          height={320}
+          alt={title}
+          className="object-contain w-full h-full"
+          showSkeleton
+        />
+        {discount > 0 && (
+          <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+            %{discount} OFF
+          </span>
+        )}
+      </Link>
+      <div className="p-4 flex flex-col gap-2">
+        <h3 className="text-sm font-medium text-gray-800">
+          {shorterText(title, 40)}
+        </h3>
+        <div className="flex items-center gap-2">
+          <p className="text-lg font-semibold text-gray-900">${finalPrice}</p>
           {discount > 0 && (
-            <span className="text-gray-400 line-through text-[12px] ml-[20px]">
-              {price.toLocaleString()}
+            <span className="text-sm text-gray-400 line-through">
+              ${originalPrice}
             </span>
           )}
         </div>

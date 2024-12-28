@@ -5,7 +5,6 @@ const BASE_URL =
     ? "https://admin-dahboard-shop.vercel.app"
     : "http://localhost:3001";
 
-
 export const getSession = async () => {
   return api
     .get("/api/auth")
@@ -46,13 +45,10 @@ export const getShippingData = async () => {
 };
 
 export const getAllProducts = async () => {
-  return api
-    .get("/api/products")
-    .then((res) => res.data)
-    .catch((error) => {
-      console.error("Error fetching session data:", error);
-      return null;
-    });
+  const res = await fetch(`${BASE_URL}/api/products`);
+
+  const responseData = await res.json();
+  return responseData;
 };
 export const getLatestProducts = async () => {
   return api
@@ -67,20 +63,15 @@ export const getLatestProducts = async () => {
 export const getFilterProducts = async (searchParams) => {
   const query = new URLSearchParams(searchParams).toString();
 
-  return api
-    .get(`/api/filterProducts?${query}`)
-    .then((res) => res.data)
-    .catch((error) => {
-      console.error("Error fetching filtering products:", error);
-      return null;
-    });
+  const res = await fetch(`${BASE_URL}/api/products?${query}`);
+
+  const responseData = await res.json();
+  return responseData;
 };
 
 export const getProduct = async (id) => {
-
   const res = await fetch(`${BASE_URL}/api/products/${id}`);
-  
 
   const responseData = await res.json();
-    return responseData;
+  return responseData;
 };

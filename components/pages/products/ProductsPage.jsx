@@ -40,22 +40,22 @@ export default function ProductsPage({ searchParams }) {
     searchParams && Object.keys(searchParams).length > 0
       ? filteredProduct
       : allProducts;
-console.log("productsToShow", productsToShow);
+
   return (
     <main>
       <div className="flex items-center gap-2 w-full mb-[20px]">
         <FilterProducts />
         <SearchProducts />
       </div>
-      {productsToShow.product?.products.length !== 0 ? (
+      {productsToShow?.products?.length !== 0 ? (
         <>
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[15px]">
-            {productsToShow?.products?.products.map((product) => (
+            {productsToShow?.products?.map((product) => (
               <ProductCard key={product._id} {...product} />
             ))}
           </section>
           <Pagination
-            totalPages={productsToShow.products?.totalPages}
+            totalPages={productsToShow?.totalPages}
             searchParams={searchParams}
           />
         </>

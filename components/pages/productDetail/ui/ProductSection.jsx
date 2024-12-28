@@ -11,7 +11,6 @@ import ImageBox from "./ImageBox";
 
 export default async function ProductSection({ id }) {
   const product = await getProduct(id);
-  console.log("product", product);
 
   const { _id, title, image, price, stock, discount, description, category } =
     product?.product;
