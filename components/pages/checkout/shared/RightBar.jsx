@@ -9,7 +9,7 @@ export default function RightBar({
   buttonClassName,
   isLoading,
 }) {
-  console.log("right bar .....", cart.totalProductsCount);
+
   return (
     <section className="cardShadow3 rounded-xl p-6 pt-3 max-lg:w-full lg:w-1/4 divide-y-2 divide-gray-100">
       <div className="flex items-center w-full justify-between py-3">

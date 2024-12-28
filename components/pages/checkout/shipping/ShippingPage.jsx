@@ -45,7 +45,7 @@ export default function ShippingPage() {
           </div>
           <div className="cardShadow3 p-6 space-y-3">
             <p className="subtitle ml-[37px]">Address :</p>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center flex-col justify-between ">
               <div className="flex items-center">
                 <div className="flex gap-3">
                   <div className="iconSize">{icons.location}</div>
@@ -54,7 +54,7 @@ export default function ShippingPage() {
                   </p>
                 </div>
               </div>
-              <div className="bg-red-50 rounded-lg p-2 border-x-4 border-red-500 max-lg:w-full lg:w-[40%]">
+              <div className="bg-red-50 rounded-lg p-2 border-x-4 border-red-500 w-fit">
                 <p className="text-center text-red-500 text-[.9rem]">
                   Please enter the exact address!
                 </p>
@@ -92,7 +92,7 @@ export default function ShippingPage() {
         !data?.user?.displayName ||
         !data?.user?.phoneNumber ? (
           <div className="bg-red-50 rounded-lg p-4 border-x-4 border-red-500 max-lg:w-full lg:w-1/4">
-            <p className="text-center text-red-500">
+            <p className="text-center text-red-500 text-[.8rem]">
               Complete your info to proceed!
             </p>
           </div>

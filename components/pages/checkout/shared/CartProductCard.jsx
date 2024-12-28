@@ -43,7 +43,7 @@ export default function CartProductCard({
               $ {(reducePrice(discount, price) * quantity).toLocaleString()}
             </p>
           </div>
-          <div className="w-full flex justify-end">
+          <div className="w-full flex justify-start ">
             <AddToCart
               productId={JSON.parse(JSON.stringify(_id))}
               stock={stock}
