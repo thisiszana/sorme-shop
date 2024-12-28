@@ -21,8 +21,6 @@ export default function LatestProducts() {
     refetchInterval: 50 * 1000,
   });
 
-  console.log(data);
-
   if (isLoading)
     return (
       <main className="flex justify-center items-center">
